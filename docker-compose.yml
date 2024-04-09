@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  backend:
+    build: .
+    ports:
+      - "${SERVER_PORT}:${LOCAL_SERVER_PORT}"
+    depends_on:
+      - db
+    environment:
+      - PORT=${SERVER_PORT}
+      - MONGO_URI=${MONGO_URI}
+
+  db:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
